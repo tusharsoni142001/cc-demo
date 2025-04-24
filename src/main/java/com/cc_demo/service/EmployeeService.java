@@ -32,4 +32,8 @@ public class EmployeeService {
     public Employee addEmployee(Employee employee) {
         return employeeRepository.save(employee);
     }
+
+    public List<Employee> getEmployeesByDepartment(String department) {
+        return employeeRepository.findByDepartment(department); // Assuming this method is implemented in the repository
+    }
 }

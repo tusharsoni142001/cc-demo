@@ -45,5 +45,13 @@ public class Controller {
         return new ResponseEntity<Employee>(createdEmployee, HttpStatus.CREATED);
     }
 
-
+    @GetMapping("/department/{department}")
+    public ResponseEntity<List<Employee>> getEmployeesByDepartment(@PathVariable("department") String department) {
+        List<Employee> employees = employeeService.getEmployeesByDepartment(department);
+        if (!employees.isEmpty()) {
+            return new ResponseEntity<>(employees, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND); // No employees found in that department
+        }
+    }
 }
