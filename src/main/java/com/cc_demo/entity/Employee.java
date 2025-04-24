@@ -15,6 +15,7 @@ public class Employee {
     private String designation;
     private String department;
     private double salary;
+    private String lastname;
 
     public Employee() {
     }
@@ -57,5 +58,13 @@ public class Employee {
 
     public void setSalary(double salary) {
         this.salary = salary;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 }

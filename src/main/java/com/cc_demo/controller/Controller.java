@@ -45,7 +45,6 @@ public class Controller {
         return new ResponseEntity<Employee>(createdEmployee, HttpStatus.CREATED);
     }
 
-<<<<<<< HEAD
     @GetMapping("/department/{department}")
     public ResponseEntity<List<Employee>> getEmployeesByDepartment(@PathVariable("department") String department) {
         List<Employee> employees = employeeService.getEmployeesByDepartment(department);
@@ -55,7 +54,7 @@ public class Controller {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND); // No employees found in that department
         }
     }
-=======
+
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteEmployee(@PathVariable("id") Long id) {
         try {
@@ -66,6 +65,4 @@ public class Controller {
         }
     }
 
-
->>>>>>> 5841d17d172a546834b7aa29eb9be7e824fdadfa
 }
