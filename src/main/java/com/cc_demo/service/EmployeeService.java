@@ -33,7 +33,12 @@ public class EmployeeService {
         return employeeRepository.save(employee);
     }
 
+<<<<<<< HEAD
     public List<Employee> getEmployeesByDepartment(String department) {
         return employeeRepository.findByDepartment(department); // Assuming this method is implemented in the repository
+=======
+    public void deleteEmployee(Long id) {
+        employeeRepository.deleteById(id);
+>>>>>>> 5841d17d172a546834b7aa29eb9be7e824fdadfa
     }
 }
