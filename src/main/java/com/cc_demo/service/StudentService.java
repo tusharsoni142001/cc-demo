@@ -21,23 +21,43 @@ public class StudentService {
     }
 
     public Student getStudent(Long id) {
-        Optional<Student> student = studentRepository.findById(id);
-        return student.orElse(null);
+        return studentRepository.findById(id).orElse(null);
     }
 
     public Student addStudent(Student student) {
+        if (studentRepository.existsByEmail(student.getEmail())) {
+            throw new IllegalArgumentException("Email already exists!");
+        }
         return studentRepository.save(student);
     }
 
+    public Student updateStudent(Long id, Student updatedStudent) {
+        return studentRepository.findById(id).map(student -> {
+            student.setFirstName(updatedStudent.getFirstName());
+            student.setLastName(updatedStudent.getLastName());
+            student.setEmail(updatedStudent.getEmail());
+            student.setMajor(updatedStudent.getMajor());
+            student.setYear(updatedStudent.getYear());
+            student.setGpa(updatedStudent.getGpa());
+            student.setEnrollmentDate(updatedStudent.getEnrollmentDate());
+            return studentRepository.save(student);
+        }).orElse(null);
+    }
+
     public List<Student> getStudentsByMajor(String major) {
-        return studentRepository.findByMajor(major);
+        return studentRepository.findByMajorIgnoreCase(major);
     }
 
     public List<Student> getStudentsByYear(int year) {
         return studentRepository.findByYear(year);
     }
 
-    public void deleteStudent(Long id) {
-        studentRepository.deleteById(id);
+    public boolean deleteStudent(Long id) {
+        if (studentRepository.existsById(id)) {
+            studentRepository.deleteById(id);
+            return true;
+        } else {
+            return false;
+        }
     }
 }
