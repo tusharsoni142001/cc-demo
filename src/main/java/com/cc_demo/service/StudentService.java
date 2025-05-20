@@ -39,7 +39,6 @@ public class StudentService {
             student.setMajor(updatedStudent.getMajor());
             student.setYear(updatedStudent.getYear());
             student.setGpa(updatedStudent.getGpa());
-            student.setEnrollmentDate(updatedStudent.getEnrollmentDate());
             return studentRepository.save(student);
         }).orElse(null);
     }
