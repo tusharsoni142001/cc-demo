@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/cc-demo/student")
@@ -72,6 +73,16 @@ public class StudentController {
             return new ResponseEntity<>("Student with id: " + id + " has been deleted.", HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>("No student found with id: " + id, HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/email/{email}")
+    public ResponseEntity<?> getStudentByEmail(@PathVariable("email") String email) {
+        Student student = studentService.getStudentByEmail(email);
+        if (student != null) {
+            return ResponseEntity.ok(student);
+        } else {
+            return new ResponseEntity<>(Map.of("error", "No student found with email: " + email), HttpStatus.NOT_FOUND);
         }
     }
 }

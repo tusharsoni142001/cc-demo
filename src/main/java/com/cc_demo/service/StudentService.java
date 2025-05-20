@@ -59,4 +59,10 @@ public class StudentService {
             return false;
         }
     }
+
+    public Student getStudentByEmail(String email) {
+        return studentRepository.findByEmail(email).orElse(null);
+    }
+
+
 }
