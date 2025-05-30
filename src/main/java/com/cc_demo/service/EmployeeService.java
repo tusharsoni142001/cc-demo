@@ -29,6 +29,11 @@ public class EmployeeService {
     }
 
     public Employee addEmployee(Employee employee) {
+        // Log the employee being added
+        if (employee == null) {
+            throw new IllegalArgumentException("Employee cannot be null");
+        }
+        System.out.println("Adding employee: " + employee);
         return employeeRepository.save(employee);
     }
 
