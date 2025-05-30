@@ -17,7 +17,6 @@ public class EmployeeService {
         this.employeeRepository = employeeRepository;
     }
 
-
     public List<Employee> getAllEmployee() {
         return employeeRepository.findAll();
     }
@@ -40,8 +39,13 @@ public class EmployeeService {
     public List<Employee> getEmployeesByDepartment(String department) {
         return employeeRepository.findByDepartment(department); // Assuming this method is implemented in the repository
     }
-        public void deleteEmployee (Long id){
-            employeeRepository.deleteById(id);
+
+    public void deleteEmployee(Long id) {
+        System.out.println("Deleting employee with ID: " + id);
+        if (id == null) {
+            throw new IllegalArgumentException("Employee ID cannot be null");
+        }
+        employeeRepository.deleteById(id);
 
     }
 }
